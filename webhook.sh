@@ -34,7 +34,7 @@ worker() {
 	echo "worker working"
 	update
 	echo "worker resting"
-	sleep 1
+	sleep 60
     done
 }
 
