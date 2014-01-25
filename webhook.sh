@@ -27,14 +27,17 @@ server() {
 }
 
 worker() {
-    while true; do
-        echo "worker waiting"
-        inotifywait -e create -qq jobs
-        rm jobs/*
-        echo "worker working"
-        update
-        echo "worker resting"
-        sleep 60
+    echo "worker waiting"
+    inotifywait -m -q -e create --format %f jobs | while read job; do
+        if [ -e "jobs/$job" ]; then
+            cat jobs/*
+            rm jobs/*
+            echo "worker working"
+            update
+            echo "worker resting"
+            sleep 60
+            echo "worker waiting"
+        fi
     done
 }
 
