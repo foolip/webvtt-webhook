@@ -4,8 +4,8 @@ http.createServer(function (req, res) {
   if (req.url == '/webvtt-webhook') {
     fs.writeFile(__dirname + '/jobs/' + Date.now(), '', function(err) {
       if (err) {
-	console.log(err);
-	res.statusCode = 500;
+        console.log(err);
+        res.statusCode = 500;
       }
       res.end(http.STATUS_CODES[res.statusCode]);
     });
