@@ -15,7 +15,7 @@ update() {
     if [ "$(git rev-parse HEAD)" != "$(git rev-parse FETCH_HEAD)" ]; then
         git reset --hard FETCH_HEAD
         git submodule update --init -f
-        ./publish.sh -f 2>&1 | mail -s "webvtt-webhook update" root
+        ./publish.sh -f
     fi
     cd ..
 }
