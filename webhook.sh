@@ -11,9 +11,9 @@ setup() {
 
 update() {
     cd webvtt
-    git fetch origin master
-    if [ "$(git rev-parse HEAD)" != "$(git rev-parse FETCH_HEAD)" ]; then
-        git reset --hard FETCH_HEAD
+    git fetch
+    if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/master)" ]; then
+        git reset --hard origin/master
         git submodule update --init -f
         ./publish.sh -f
     fi
